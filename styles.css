@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "digital";
+  src: url("./fonts/digital-7.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "eurostile";
+  src: url("./fonts/EurostileBold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: rgb(43, 41, 41);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  background-color: #cbcdd1;
+  width: 370px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 24px 12px;
+  border-top-right-radius: 24px 12px;
+}
+
+h1 {
+  margin-top: 6px;
+  color: #38383d;
+}
+#headerPara {
+  align-self: flex-end;
+  padding-right: 50px;
+  margin: 2px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.calculator-header {
+  font-family: "eurostile";
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.solar {
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  background: #1d0e00;
+  border: 4px solid #747476;
+}
+
+.calculator-screen {
+  border-radius: 6px;
+  display: flex;
+  justify-content: end;
+  width: 351px;
+  height: 136px;
+  background: #d5e3e4;
+  border: 2px solid #64676e;
+  border-width: 16px 20px 26px 20px;
+}
+
+.screenDigits {
+  font-family: "digital";
+  color: #000102;
+  font-size: 100px;
+  align-self: center;
+}
+
+.btn {
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 24px 12px;
+  border-bottom-right-radius: 24px 12px;
+  font-weight: 500;
+  font-size: 25px;
+  color: #ebebf3;
+  border: none;
+  background-color: #303135;
+  width: 55px;
+  height: 46px;
+  box-shadow: 5px 4px 2px 0px rgba(0, 0, 0, 0.9);
+}
+
+.noCursor {
+  cursor: auto;
+}
+
+#carre,
+#off {
+  width: 53px;
+  height: 37px;
+}
+
+.calculator-keys-body {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#model {
+  font-weight: 600;
+  color: #1b1b1b;
+}
+
+.calculator-keys-body p {
+  grid-column: span 3;
+  margin: 6px 0 0 30px;
+}
+
+#add {
+  grid-row: span 2;
+  width: 55px;
+  height: 107px;
+}
+
+.red {
+  background: #834a5c;
+}
+
+#on {
+  align-self: start;
+  margin-left: 40px;
+  font-size: 12px;
+  text-align: center;
+}
