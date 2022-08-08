@@ -86,7 +86,6 @@ const getInputIntoArray = input => {
 
 const evaluateCalcArray = () => {
   if (calc.length > 4) {
-    console.log("multiple operation");
     result = operate(calc[1], Number(calc[0]), Number(calc[2]));
     if (result) {
       calc.splice(0, 3);
@@ -95,7 +94,6 @@ const evaluateCalcArray = () => {
       showInCalculatorScreen(result);
     }
   } else {
-    console.log("one operation");
     result = operate(calc[1], Number(calc[0]), Number(calc[2]));
     showInCalculatorScreen(result);
   }

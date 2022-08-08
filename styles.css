@@ -106,8 +106,8 @@ h1 {
   cursor: auto;
 }
 
-#carre,
-#off {
+#carreBtn,
+#offBtn {
   width: 53px;
   height: 37px;
 }
@@ -129,7 +129,7 @@ h1 {
   margin: 6px 0 0 30px;
 }
 
-#add {
+#addBtn {
   grid-row: span 2;
   width: 55px;
   height: 107px;
