@@ -16,7 +16,37 @@ const divideBtn = document.querySelector("#divide");
 const multiplyBtn = document.querySelector("#multiply");
 const equalBtn = document.querySelector("#equal");
 
-const add = (a, b) => a + b;
+let result;
+const numbers = [];
+const calc = [];
+let concat;
+
+oneBtn.addEventListener("click", e => {
+  showInCalculatorScreen(e.target.textContent);
+  getInputIntoArray(e.target.textContent);
+});
+
+twoBtn.addEventListener("click", e => {
+  showInCalculatorScreen(e.target.textContent);
+  getInputIntoArray(e.target.textContent);
+});
+
+addBtn.addEventListener("click", e => {
+  showInCalculatorScreen(e.target.textContent);
+  getInputIntoArray(e.target.textContent);
+});
+
+subtractBtn.addEventListener("click", e => {
+  showInCalculatorScreen(e.target.textContent);
+  getInputIntoArray(e.target.textContent);
+});
+
+equalBtn.addEventListener("click", e => {
+  getInputIntoArray(e.target.textContent);
+  console.log(calc);
+});
+
+const add = (a, b) => (result = a + b);
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
@@ -33,9 +63,25 @@ const operate = (operator, a, b) => {
   }
 };
 
-const writeOnCalculatorScreen = pNb => {
-  const screenArray = [];
-  screenArray.push(pNb);
+const getTextContent = () => screenDigits.textContent;
 
-  return screenArray;
+const showInCalculatorScreen = input => {
+  if (result) {
+    screenDigits.textContent = result;
+  } else {
+    screenDigits.textContent += input;
+  }
+};
+
+const getInputIntoArray = input => {
+  console.log(input);
+  if (!concat && input !== "+" && input !== "=" && input !== "-") {
+    concat = input;
+  } else if (concat && input !== "+" && input !== "=" && input !== "-") {
+    concat += input;
+  } else {
+    calc.push(concat);
+    calc.push(`${input}`);
+    concat = 0;
+  }
 };
