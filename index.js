@@ -17,9 +17,8 @@ const multiplyBtn = document.querySelector("#multiply");
 const equalBtn = document.querySelector("#equal");
 
 let result;
-const numbers = [];
-const calc = [];
 let concat;
+const calc = [];
 
 oneBtn.addEventListener("click", e => {
   showInCalculatorScreen(e.target.textContent);
@@ -43,10 +42,10 @@ subtractBtn.addEventListener("click", e => {
 
 equalBtn.addEventListener("click", e => {
   getInputIntoArray(e.target.textContent);
-  console.log(calc);
+  evaluateCalcArray();
 });
 
-const add = (a, b) => (result = a + b);
+const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
@@ -74,7 +73,6 @@ const showInCalculatorScreen = input => {
 };
 
 const getInputIntoArray = input => {
-  console.log(input);
   if (!concat && input !== "+" && input !== "=" && input !== "-") {
     concat = input;
   } else if (concat && input !== "+" && input !== "=" && input !== "-") {
@@ -83,5 +81,22 @@ const getInputIntoArray = input => {
     calc.push(concat);
     calc.push(`${input}`);
     concat = 0;
+  }
+};
+
+const evaluateCalcArray = () => {
+  if (calc.length > 4) {
+    console.log("multiple operation");
+    result = operate(calc[1], Number(calc[0]), Number(calc[2]));
+    if (result) {
+      calc.splice(0, 3);
+      calc.unshift(result);
+      result = operate(calc[1], Number(calc[0]), Number(calc[2]));
+      showInCalculatorScreen(result);
+    }
+  } else {
+    console.log("one operation");
+    result = operate(calc[1], Number(calc[0]), Number(calc[2]));
+    showInCalculatorScreen(result);
   }
 };
