@@ -44,7 +44,7 @@ h1 {
 }
 #headerPara {
   align-self: flex-end;
-  padding-right: 50px;
+  padding-right: 60px;
   margin: 2px;
   font-size: 10px;
   font-weight: bold;
@@ -71,7 +71,8 @@ h1 {
 .calculator-screen {
   border-radius: 6px;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
+  align-items: flex-end;
   width: 351px;
   height: 136px;
   background: #d5e3e4;
@@ -82,8 +83,14 @@ h1 {
 #screenDigits {
   font-family: "digital";
   color: #000102;
-  font-size: 100px;
-  align-self: center;
+  font-size: 50px;
+  height: 40%;
+}
+
+#screenDigitsResult {
+  font-family: "digital";
+  color: #000102;
+  font-size: 70px;
 }
 
 .btn {
