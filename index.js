@@ -50,17 +50,13 @@ const addBtnEvent = btn => {
         !getOperators(inputValue)
       ) {
         getInputIntoArray(inputValue);
+      } else {
+        getInputIntoArray(inputValue);
+        evaluateInputArray();
       }
 
       if (!floatPoint && inputValue === ".") {
         getInputIntoArray(inputValue);
-      }
-    }
-
-    if (inputString.length) {
-      if (getOperators(inputValue)) {
-        getInputIntoArray(inputValue);
-        evaluateInputArray();
       }
     }
 
