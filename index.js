@@ -25,6 +25,17 @@ const selectBtn = () => {
   usedButtons.forEach(btn => {
     document.querySelector(`#${btn.id}`);
     addBtnEvent(btn);
+    addMouseHoverEvent(btn);
+  });
+};
+
+const addMouseHoverEvent = btn => {
+  btn.addEventListener("mouseover", () => {
+    btn.className += " activate";
+  });
+
+  btn.addEventListener("mouseout", e => {
+    btn.className = "btn";
   });
 };
 

@@ -142,8 +142,14 @@ h1 {
   height: 107px;
 }
 
-.red {
+#allClearBtn,
+#clearBtn {
   background: #834a5c;
+}
+
+#allClearBtn:hover,
+#clearBtn:hover {
+  background: #6d3d4c;
 }
 
 #on {
@@ -151,4 +157,24 @@ h1 {
   margin-left: 40px;
   font-size: 12px;
   text-align: center;
+}
+.activate {
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 24px 12px;
+  border-bottom-right-radius: 24px 12px;
+  font-weight: 500;
+  font-size: 25px;
+  color: #ebebf3;
+  border: none;
+  background-color: #303135;
+  width: 55px;
+  height: 46px;
+  box-shadow: 5px 4px 2px 0px rgba(0, 0, 0, 0.9);
+}
+
+.activate:hover {
+  color: red;
+  background-color: #252529;
 }
