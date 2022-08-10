@@ -1,4 +1,4 @@
-const operators = ["+", "-", "÷", "x", "="];
+const operators = ["+", "-", "/", "*", "="];
 
 let result;
 let inputString = "";
@@ -46,9 +46,11 @@ const addBtnEvent = btn => {
       }
     }
 
-    if (getOperators(inputValue)) {
-      getInputIntoArray(inputValue);
-      evaluateInputArray();
+    if (inputString.length) {
+      if (getOperators(inputValue)) {
+        getInputIntoArray(inputValue);
+        evaluateInputArray();
+      }
     }
 
     if (inputValue === "AC") {
@@ -68,9 +70,9 @@ const operate = (operator, a, b) => {
     return add(a, b);
   } else if (operator === "-") {
     return subtract(a, b);
-  } else if (operator === "x") {
+  } else if (operator === "*") {
     return multiply(a, b);
-  } else if (operator === "÷") {
+  } else if (operator === "/") {
     return divide(a, b);
   }
 };
@@ -119,7 +121,6 @@ const getInputIntoArray = input => {
     inputString = "";
     floatPoint = false;
   }
-  console.log(inputString);
 };
 
 const evaluateInputArray = () => {
