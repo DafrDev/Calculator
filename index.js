@@ -45,6 +45,7 @@ const addBtnEvent = btn => {
         getInputIntoArray(inputValue);
       }
     }
+
     if (getOperators(inputValue)) {
       getInputIntoArray(inputValue);
       evaluateInputArray();
@@ -87,7 +88,6 @@ const showInCalculatorScreen = input => {
 };
 
 const getInputIntoArray = input => {
-  console.log(input);
   if (input !== "C") {
     lastInput = input;
   } else {
@@ -95,7 +95,7 @@ const getInputIntoArray = input => {
     lastInput = "";
   }
 
-  if (inputString.includes(".")) {
+  if (lastInput === ".") {
     floatPoint = true;
   }
 
@@ -106,6 +106,7 @@ const getInputIntoArray = input => {
 
   if (!inputString && !getOperators(input)) {
     inputString = lastInput;
+
     showInCalculatorScreen(inputString);
   } else if (inputString && !getOperators(input)) {
     inputString += lastInput;
@@ -118,6 +119,7 @@ const getInputIntoArray = input => {
     inputString = "";
     floatPoint = false;
   }
+  console.log(inputString);
 };
 
 const evaluateInputArray = () => {
@@ -127,6 +129,10 @@ const evaluateInputArray = () => {
       Number(inputArray[0]),
       Number(inputArray[2])
     );
+
+    if (typeof result && !Number.isNaN(result) && !Number.isInteger(result)) {
+      result = result.toFixed(1);
+    }
     showInCalculatorScreen(result);
     inputArray.splice(0, 3);
     inputArray.unshift(result);
