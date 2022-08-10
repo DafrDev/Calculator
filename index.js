@@ -3,7 +3,7 @@ const operators = ["+", "-", "÷", "x", "="];
 let result;
 let concat;
 let digitResult = "";
-let calcArray = [];
+let inputArray = [];
 const screenDigitsArray = [];
 
 const screenDigits = document.querySelector("#screenDigits");
@@ -33,12 +33,11 @@ const addBtnEvent = btn => {
     const inputValue = e.target.textContent;
 
     if (inputValue !== "AC" && inputValue !== "C") {
-      showInCalculatorScreen(inputValue);
       getInputIntoArray(inputValue);
     }
 
     if (getOperators(inputValue)) {
-      evaluateCalcArray();
+      evaluateInputArray();
     }
 
     if (inputValue === "AC") {
@@ -69,47 +68,49 @@ const operate = (operator, a, b) => {
     return divide(a, b);
   }
 };
-const getTextContent = () => screenDigits.textContent;
 
+let inputDigit = "";
 const showInCalculatorScreen = input => {
-  if (result) {
-    screenDigitsArray.push(
-      (screenDigitsResult.textContent = result.toString())
-    );
-    result = "";
-  } else if (getOperators(input)) {
-    screenDigitsResult.textContent = "";
-    screenDigitsArray.push((screenDigits.textContent = digitResult + input));
+  if (getOperators(input)) {
+    screenDigits.textContent = inputDigit + " " + input;
+    console.log(inputDigit);
   } else {
-    digitResult = screenDigitsResult.textContent += input;
+    inputDigit = input;
+    screenDigitsResult.textContent = inputDigit;
   }
-
-  if (input === "=") {
-    screenDigits.textContent = screenDigitsArray.join("");
-    digitResult = "";
-  }
-
-  console.log(screenDigitsArray);
 };
 
 const getInputIntoArray = input => {
+  if (result && inputArray[1] === "=") {
+    inputArray.splice(0, 2);
+    concat = result;
+  }
   if (!concat && !getOperators(input)) {
     concat = input;
+    showInCalculatorScreen(concat);
   } else if (concat && !getOperators(input)) {
     concat += input;
+    showInCalculatorScreen(concat);
   } else {
-    calcArray.push(concat);
-    calcArray.push(`${input}`);
+    showInCalculatorScreen(input);
+    inputArray.push(concat);
+    inputArray.push(`${input}`);
     concat = "";
   }
+
+  console.log(inputArray);
 };
 
-const evaluateCalcArray = () => {
-  if (calcArray.length === 4) {
-    result = operate(calcArray[1], Number(calcArray[0]), Number(calcArray[2]));
+const evaluateInputArray = () => {
+  if (inputArray.length === 4) {
+    result = operate(
+      inputArray[1],
+      Number(inputArray[0]),
+      Number(inputArray[2])
+    );
     showInCalculatorScreen(result);
-    calcArray.splice(0, 3);
-    calcArray.unshift(result);
+    inputArray.splice(0, 3);
+    inputArray.unshift(result);
   }
 };
 
@@ -125,14 +126,14 @@ const getOperators = input => {
 };
 
 const clearCalculator = () => {
-  calcArray = [];
+  inputArray = [];
   screenDigits.textContent = "";
 };
 
 // const clearLastDigit = () => {
-//   console.log(calcArray);
-//   calcArray.pop();
-//   console.log(calcArray);
+//   console.log(inputArray);
+//   inputArray.pop();
+//   console.log(inputArray);
 // };
 
 selectBtn();
