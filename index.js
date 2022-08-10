@@ -5,7 +5,6 @@ let concat = "";
 let digitResult = "";
 let inputArray = [];
 let floatPoint = false;
-const screenDigitsArray = [];
 
 const screenDigits = document.querySelector("#screenDigits");
 const screenDigitsResult = document.querySelector("#screenDigitsResult");
@@ -33,7 +32,7 @@ const addBtnEvent = btn => {
   btn.addEventListener("click", e => {
     const inputValue = e.target.textContent;
 
-    if (inputValue !== "AC" && inputValue !== "C" && inputValue !== ".") {
+    if (inputValue !== "AC" && inputValue !== ".") {
       getInputIntoArray(inputValue);
     }
 
@@ -44,11 +43,6 @@ const addBtnEvent = btn => {
     if (inputValue === "AC") {
       clearCalculator();
       result = "";
-    }
-
-    if (inputValue === "C") {
-      console.log("clear");
-      // clearLastDigit();
     }
 
     if (!floatPoint && inputValue === ".") {
@@ -75,9 +69,11 @@ const operate = (operator, a, b) => {
 };
 
 let inputDigit = "";
+let operatorInput = "";
+let lastInput = "";
 const showInCalculatorScreen = input => {
   if (getOperators(input)) {
-    screenDigits.textContent = inputDigit + " " + input;
+    screenDigits.textContent = `${inputDigit} ${input}`;
   } else {
     inputDigit = input;
     screenDigitsResult.textContent = inputDigit;
@@ -85,14 +81,16 @@ const showInCalculatorScreen = input => {
 };
 
 const getInputIntoArray = input => {
-  console.log(input === ".");
-  if (concat.includes(".")) {
-    console.log("include");
-    floatPoint = true;
+  if (input !== "C") {
+    lastInput = input;
+  } else {
+    clearLastDigit();
+    lastInput = "";
   }
 
-  console.log("concat: " + concat);
-  // console.log("inputArray: " + inputArray);
+  if (concat.includes(".")) {
+    floatPoint = true;
+  }
 
   if (result && inputArray[1] === "=") {
     inputArray.splice(0, 2);
@@ -100,18 +98,20 @@ const getInputIntoArray = input => {
   }
 
   if (!concat && !getOperators(input)) {
-    concat = input;
+    concat = lastInput;
     showInCalculatorScreen(concat);
   } else if (concat && !getOperators(input)) {
-    concat += input;
+    concat += lastInput;
     showInCalculatorScreen(concat);
   } else {
-    showInCalculatorScreen(input);
+    operatorInput = lastInput;
+    showInCalculatorScreen(operatorInput);
     inputArray.push(concat);
-    inputArray.push(`${input}`);
+    inputArray.push(`${operatorInput}`);
     concat = "";
     floatPoint = false;
   }
+  console.log(inputArray);
 };
 
 const evaluateInputArray = () => {
@@ -147,10 +147,8 @@ const clearCalculator = () => {
   screenDigitsResult.textContent = "";
 };
 
-// const clearLastDigit = () => {
-//   console.log(inputArray);
-//   inputArray.pop();
-//   console.log(inputArray);
-// };
+const clearLastDigit = () => {
+  concat = concat.slice(0, -1);
+};
 
 selectBtn();
